@@ -1,17 +1,661 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Funmate Landing Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Funmate</title>
 
-  <body>
-    <main class="container">
-      <img class="logo" src="{{ url_for('static', filename='assets/logo.jpeg') }}" alt="Funmate logo" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-      <h1>Funmate Landing Page</h1>
-    </main>
-  </body>
+  <!-- Optional: tweak Tailwind theme -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "Apple Color Emoji", "Segoe UI Emoji"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth slider drag feel */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-fuchsia-500/20 selection:text-fuchsia-100">
+  <!-- Background glow -->
+  <div class="pointer-events-none fixed inset-0 overflow-hidden">
+    <div class="absolute -top-32 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-fuchsia-500/20 blur-3xl"></div>
+    <div class="absolute top-60 left-10 h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl"></div>
+    <div class="absolute top-96 right-0 h-[520px] w-[520px] rounded-full bg-indigo-400/10 blur-3xl"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="relative z-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-6">
+        <a href="#" class="flex items-center gap-3">
+          <!-- Put your logo here: static/assets/logo.png -->
+          <div class="h-10 w-10 rounded-xl bg-white/5 ring-1 ring-white/10 grid place-items-center overflow-hidden">
+            <img src="/static/assets/logo.png" alt="Funmate" class="h-full w-full object-contain p-2" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=&quot;text-sm font-semibold text-slate-200&quot;>F</span>';">
+          </div>
+          <div class="leading-tight">
+            <div class="text-base font-semibold tracking-tight">Funmate</div>
+            <div class="text-xs text-slate-400">Dating • Community • Events</div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
+          <a class="hover:text-white transition" href="#product">Product</a>
+          <a class="hover:text-white transition" href="#screens">Screens</a>
+          <a class="hover:text-white transition" href="#founder">Founder</a>
+          <a class="hover:text-white transition" href="#faq">FAQ</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="#cta" class="hidden sm:inline-flex rounded-xl bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 ring-1 ring-white/10 hover:bg-white/10 transition">
+            Get Updates
+          </a>
+          <a href="#cta" class="inline-flex rounded-xl bg-gradient-to-r from-fuchsia-500 to-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-fuchsia-500/20 hover:opacity-95 transition">
+            Join the waitlist
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="relative z-10">
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-14 lg:pt-14 lg:pb-20">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-6">
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-slate-300 ring-1 ring-white/10">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            Dating is live • Events are coming soon
+          </div>
+
+          <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight">
+            Meet people you actually
+            <span class="bg-gradient-to-r from-fuchsia-400 via-indigo-300 to-cyan-300 bg-clip-text text-transparent"> vibe </span>
+            with.
+          </h1>
+
+          <p class="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed">
+            Funmate combines modern dating with community energy — and soon, a full event ecosystem to plan, book,
+            and experience nights out with confidence.
+          </p>
+
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
+            <a href="#cta" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-fuchsia-500 to-indigo-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-fuchsia-500/20 hover:opacity-95 transition">
+              Join the waitlist
+              <svg class="ml-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <a href="#screens" class="inline-flex items-center justify-center rounded-xl bg-white/5 px-5 py-3 text-sm font-semibold text-slate-200 ring-1 ring-white/10 hover:bg-white/10 transition">
+              View app screens
+            </a>
+          </div>
+
+          <div class="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
+            <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+              <div class="text-xl font-semibold">Swipe Hub</div>
+              <div class="mt-1 text-xs text-slate-400">Location-based discovery</div>
+            </div>
+            <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+              <div class="text-xl font-semibold">My Hub</div>
+              <div class="mt-1 text-xs text-slate-400">1:1 & group chats</div>
+            </div>
+            <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+              <div class="text-xl font-semibold">District</div>
+              <div class="mt-1 text-xs text-slate-400">Events + booking</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="relative">
+            <div class="absolute -inset-4 rounded-[28px] bg-gradient-to-r from-fuchsia-500/25 via-indigo-500/20 to-cyan-400/20 blur-2xl"></div>
+
+            <!-- Hero mockup card -->
+            <div class="relative rounded-[28px] bg-slate-900/60 ring-1 ring-white/10 overflow-hidden shadow-2xl">
+              <div class="p-5 border-b border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-rose-400"></span>
+                  <span class="h-2 w-2 rounded-full bg-amber-300"></span>
+                  <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                </div>
+                <div class="text-xs text-slate-400">Funmate • Preview</div>
+              </div>
+
+              <div class="p-6 sm:p-8">
+                <div class="grid sm:grid-cols-2 gap-5">
+                  <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5">
+                    <div class="text-sm font-semibold text-slate-100">Dating (Complete)</div>
+                    <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+                      Swipe, match, chat and plan. Smooth onboarding, profiles and verification.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">OTP / Google login</span>
+                      <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Verified badge</span>
+                      <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">1:1 messaging</span>
+                    </div>
+                  </div>
+
+                  <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5">
+                    <div class="text-sm font-semibold text-slate-100">Events (Coming Soon)</div>
+                    <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+                      Discover events, book solo or with friends, and unlock a seamless entry experience.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Event feed</span>
+                      <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Group booking</span>
+                      <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">QR / code entry</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 rounded-2xl bg-gradient-to-r from-white/5 to-white/0 ring-1 ring-white/10 p-5">
+                  <div class="flex items-start gap-3">
+                    <div class="mt-0.5 h-9 w-9 rounded-xl bg-white/5 ring-1 ring-white/10 grid place-items-center">
+                      <svg class="h-5 w-5 text-slate-200" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M3 3a1 1 0 011-1h12a1 1 0 011 1v14a1 1 0 01-1 1H4a1 1 0 01-1-1V3zm3 3a1 1 0 000 2h8a1 1 0 100-2H6zm0 4a1 1 0 000 2h8a1 1 0 100-2H6zm0 4a1 1 0 100 2h5a1 1 0 100-2H6z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="text-sm font-semibold">Built for trust & flow</div>
+                      <div class="mt-1 text-sm text-slate-300">
+                        Role-based experiences for users, hosts, organizers — with secure verification and smooth navigation.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <p class="mt-4 text-center text-xs text-slate-400">
+              Tip: Replace screenshots in <code class="text-slate-300">/static/assets/screens/</code> (screen1.png…screen8.png)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product / Features -->
+    <section id="product" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="grid lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-5">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Everything you need to meet — and then actually go out.</h2>
+          <p class="mt-3 text-slate-300 leading-relaxed">
+            Dating is fully built. Events are next: discovery, booking, entry, and host tools — stitched into one elegant flow.
+          </p>
+
+          <div class="mt-6 space-y-3">
+            <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
+              <div class="flex items-start gap-3">
+                <div class="h-9 w-9 rounded-xl bg-white/5 ring-1 ring-white/10 grid place-items-center">
+                  <svg class="h-5 w-5 text-slate-200" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M3 8a2 2 0 012-2h10a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+                    <path d="M7 6V5a3 3 0 116 0v1h-2V5a1 1 0 10-2 0v1H7z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold">Verification & safety</div>
+                  <div class="mt-1 text-sm text-slate-300">Badges, moderation, and clean identity flows for better trust.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
+              <div class="flex items-start gap-3">
+                <div class="h-9 w-9 rounded-xl bg-white/5 ring-1 ring-white/10 grid place-items-center">
+                  <svg class="h-5 w-5 text-slate-200" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm4 3a1 1 0 000 2h8a1 1 0 100-2H6zm0 4a1 1 0 000 2h5a1 1 0 100-2H6z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold">Swipe, match, chat</div>
+                  <div class="mt-1 text-sm text-slate-300">Smooth discovery with a clean chat experience and group energy.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
+              <div class="flex items-start gap-3">
+                <div class="h-9 w-9 rounded-xl bg-white/5 ring-1 ring-white/10 grid place-items-center">
+                  <svg class="h-5 w-5 text-slate-200" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M6 2a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2h8a2 2 0 012 2v10a3 3 0 01-3 3H7a3 3 0 01-3-3V5zm5 3a1 1 0 012 0v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1H8a1 1 0 110-2h1V8z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold">Events that feel effortless</div>
+                  <div class="mt-1 text-sm text-slate-300">Browse, book for 2 or groups, and walk in with QR/code entry.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6 sm:p-8">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <div class="text-sm text-slate-400">Roadmap snapshot</div>
+                <div class="text-xl font-semibold mt-1">Android → iOS → Admin/Web (parallel)</div>
+              </div>
+              <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-3 py-1 text-slate-300">90-day plan</span>
+            </div>
+
+            <div class="mt-6 grid sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+                <div class="text-sm font-semibold">Phase A • Android</div>
+                <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+                  Discovery → core infra → onboarding & verification → swipe hub → chats → events → creation → payments/admin.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">OTP + Google Auth</span>
+                  <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Firestore schema</span>
+                  <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Security rules</span>
+                </div>
+              </div>
+
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+                <div class="text-sm font-semibold">Phase B • iOS</div>
+                <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+                  Feature parity + iOS refinement + compliance + launch. Built after Android logic proves out.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Apple Sign-In</span>
+                  <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Payment testing</span>
+                  <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">App Store compliance</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl bg-gradient-to-r from-fuchsia-500/10 via-indigo-500/10 to-cyan-400/10 ring-1 ring-white/10 p-5">
+              <div class="text-sm font-semibold">Event Ecosystem (Coming Soon)</div>
+              <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+                Event feed + details + “Who’s going” previews, booking for 1/2/group, auto-created event groups, and host/organizer tools.
+              </p>
+              <p class="mt-2 text-xs text-slate-400">
+                (Highlights align with your defined modules: event feed, booking flow, creation ecosystem, entry checks, and admin/finance.) 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screens / Slider -->
+    <section id="screens" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">App preview</h2>
+          <p class="mt-2 text-slate-300">Add your 7–8 mobile screenshots and let the slider do the storytelling.</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="prevBtn" class="rounded-xl bg-white/5 px-3 py-2 text-sm font-semibold text-slate-200 ring-1 ring-white/10 hover:bg-white/10 transition" aria-label="Previous">
+            ◀
+          </button>
+          <button id="nextBtn" class="rounded-xl bg-white/5 px-3 py-2 text-sm font-semibold text-slate-200 ring-1 ring-white/10 hover:bg-white/10 transition" aria-label="Next">
+            ▶
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-3xl bg-white/5 ring-1 ring-white/10 p-4 sm:p-6">
+        <div class="flex items-center justify-between gap-3">
+          <div class="text-xs text-slate-400">Slider</div>
+          <div class="text-xs text-slate-400">
+            Drag • Scroll • Use arrows
+          </div>
+        </div>
+
+        <div class="mt-4 relative">
+          <div id="carousel" class="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2">
+            <!-- Replace with your screenshots:
+                 /static/assets/screens/screen1.png ... screen8.png -->
+            <!-- Card template -->
+            <div class="snap-center shrink-0 w-[260px] sm:w-[300px] lg:w-[340px]">
+              <div class="rounded-3xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <div class="aspect-[9/19] bg-black/30 grid place-items-center">
+                  <img src="/static/assets/screens/screen1.png" alt="Funmate app screen 1" class="h-full w-full object-cover"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;text-center p-6&quot;><div class=&quot;text-sm font-semibold&quot;>Screen 1</div><div class=&quot;text-xs text-slate-400 mt-1&quot;>Add /static/assets/screens/screen1.png</div></div>';">
+                </div>
+                <div class="p-4">
+                  <div class="text-sm font-semibold">Swipe Hub</div>
+                  <div class="mt-1 text-xs text-slate-400">Discover nearby matches</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="snap-center shrink-0 w-[260px] sm:w-[300px] lg:w-[340px]">
+              <div class="rounded-3xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <div class="aspect-[9/19] bg-black/30 grid place-items-center">
+                  <img src="/static/assets/screens/screen2.png" alt="Funmate app screen 2" class="h-full w-full object-cover"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;text-center p-6&quot;><div class=&quot;text-sm font-semibold&quot;>Screen 2</div><div class=&quot;text-xs text-slate-400 mt-1&quot;>Add /static/assets/screens/screen2.png</div></div>';">
+                </div>
+                <div class="p-4">
+                  <div class="text-sm font-semibold">Match moment</div>
+                  <div class="mt-1 text-xs text-slate-400">Celebrate the vibe</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="snap-center shrink-0 w-[260px] sm:w-[300px] lg:w-[340px]">
+              <div class="rounded-3xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <div class="aspect-[9/19] bg-black/30 grid place-items-center">
+                  <img src="/static/assets/screens/screen3.png" alt="Funmate app screen 3" class="h-full w-full object-cover"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;text-center p-6&quot;><div class=&quot;text-sm font-semibold&quot;>Screen 3</div><div class=&quot;text-xs text-slate-400 mt-1&quot;>Add /static/assets/screens/screen3.png</div></div>';">
+                </div>
+                <div class="p-4">
+                  <div class="text-sm font-semibold">1:1 Chat</div>
+                  <div class="mt-1 text-xs text-slate-400">Talk naturally, share moments</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="snap-center shrink-0 w-[260px] sm:w-[300px] lg:w-[340px]">
+              <div class="rounded-3xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <div class="aspect-[9/19] bg-black/30 grid place-items-center">
+                  <img src="/static/assets/screens/screen4.png" alt="Funmate app screen 4" class="h-full w-full object-cover"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;text-center p-6&quot;><div class=&quot;text-sm font-semibold&quot;>Screen 4</div><div class=&quot;text-xs text-slate-400 mt-1&quot;>Add /static/assets/screens/screen4.png</div></div>';">
+                </div>
+                <div class="p-4">
+                  <div class="text-sm font-semibold">Group Chats</div>
+                  <div class="mt-1 text-xs text-slate-400">Plan together</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="snap-center shrink-0 w-[260px] sm:w-[300px] lg:w-[340px]">
+              <div class="rounded-3xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <div class="aspect-[9/19] bg-black/30 grid place-items-center">
+                  <img src="/static/assets/screens/screen5.png" alt="Funmate app screen 5" class="h-full w-full object-cover"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;text-center p-6&quot;><div class=&quot;text-sm font-semibold&quot;>Screen 5</div><div class=&quot;text-xs text-slate-400 mt-1&quot;>Add /static/assets/screens/screen5.png</div></div>';">
+                </div>
+                <div class="p-4">
+                  <div class="text-sm font-semibold">Event Feed</div>
+                  <div class="mt-1 text-xs text-slate-400">Discover what’s happening</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="snap-center shrink-0 w-[260px] sm:w-[300px] lg:w-[340px]">
+              <div class="rounded-3xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <div class="aspect-[9/19] bg-black/30 grid place-items-center">
+                  <img src="/static/assets/screens/screen6.png" alt="Funmate app screen 6" class="h-full w-full object-cover"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;text-center p-6&quot;><div class=&quot;text-sm font-semibold&quot;>Screen 6</div><div class=&quot;text-xs text-slate-400 mt-1&quot;>Add /static/assets/screens/screen6.png</div></div>';">
+                </div>
+                <div class="p-4">
+                  <div class="text-sm font-semibold">Event Details</div>
+                  <div class="mt-1 text-xs text-slate-400">Know the vibe before you go</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="snap-center shrink-0 w-[260px] sm:w-[300px] lg:w-[340px]">
+              <div class="rounded-3xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <div class="aspect-[9/19] bg-black/30 grid place-items-center">
+                  <img src="/static/assets/screens/screen7.png" alt="Funmate app screen 7" class="h-full w-full object-cover"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;text-center p-6&quot;><div class=&quot;text-sm font-semibold&quot;>Screen 7</div><div class=&quot;text-xs text-slate-400 mt-1&quot;>Add /static/assets/screens/screen7.png</div></div>';">
+                </div>
+                <div class="p-4">
+                  <div class="text-sm font-semibold">Booking</div>
+                  <div class="mt-1 text-xs text-slate-400">Solo • for 2 • group</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="snap-center shrink-0 w-[260px] sm:w-[300px] lg:w-[340px]">
+              <div class="rounded-3xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <div class="aspect-[9/19] bg-black/30 grid place-items-center">
+                  <img src="/static/assets/screens/screen8.png" alt="Funmate app screen 8" class="h-full w-full object-cover"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;text-center p-6&quot;><div class=&quot;text-sm font-semibold&quot;>Screen 8</div><div class=&quot;text-xs text-slate-400 mt-1&quot;>Add /static/assets/screens/screen8.png</div></div>';">
+                </div>
+                <div class="p-4">
+                  <div class="text-sm font-semibold">Entry</div>
+                  <div class="mt-1 text-xs text-slate-400">QR / code validation</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtle edges -->
+          <div class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-slate-950/70 to-transparent"></div>
+          <div class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-slate-950/70 to-transparent"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section id="founder" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="grid lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-5">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Founder</h2>
+          <p class="mt-3 text-slate-300 leading-relaxed">
+            Put a real human face behind Funmate — the mission, the values, and the obsession with building an elegant experience.
+          </p>
+
+          <div class="mt-6 rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
+            <div class="flex items-center gap-4">
+              <!-- Add founder photo: /static/assets/founder.jpg -->
+              <div class="h-14 w-14 rounded-2xl bg-slate-950/40 ring-1 ring-white/10 overflow-hidden">
+                <img src="/static/assets/founder.jpg" alt="Founder" class="h-full w-full object-cover"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;h-full w-full grid place-items-center text-xs text-slate-400&quot;>Photo</div>';">
+              </div>
+              <div>
+                <div class="font-semibold">Founder Name</div>
+                <div class="text-sm text-slate-400">CEO • Funmate</div>
+              </div>
+            </div>
+
+            <p class="mt-4 text-sm text-slate-300 leading-relaxed">
+              “I started Funmate to make meeting people feel effortless — and to turn online connection into real-world moments.
+              We’re building a platform that’s safe, modern, and genuinely fun.”
+            </p>
+
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Community-first</span>
+              <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Safety by design</span>
+              <span class="text-xs rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-slate-300">Elegant UX</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="relative rounded-3xl bg-gradient-to-r from-fuchsia-500/10 via-indigo-500/10 to-cyan-400/10 ring-1 ring-white/10 p-6 sm:p-8">
+            <h3 class="text-xl font-semibold">Why Funmate wins</h3>
+            <p class="mt-2 text-slate-300 leading-relaxed">
+              It’s not just matching — it’s momentum. From swipe to chat to plans to entry. One flow, one identity, one community.
+            </p>
+
+            <div class="mt-6 grid sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+                <div class="text-sm font-semibold">Less friction</div>
+                <p class="mt-2 text-sm text-slate-300">Fast onboarding, clear navigation, and purposeful “next step” prompts.</p>
+              </div>
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+                <div class="text-sm font-semibold">More real life</div>
+                <p class="mt-2 text-sm text-slate-300">Events bring people together — with booking and group coordination built-in.</p>
+              </div>
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+                <div class="text-sm font-semibold">Trust layer</div>
+                <p class="mt-2 text-sm text-slate-300">Verification + moderation for a safer, higher-quality community.</p>
+              </div>
+              <div class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+                <div class="text-sm font-semibold">Organizer-ready</div>
+                <p class="mt-2 text-sm text-slate-300">Host/merchant tools, guest lists, and entry checks designed for scale.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6 sm:p-10">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">FAQ</h2>
+
+        <div class="mt-6 grid md:grid-cols-2 gap-4">
+          <details class="group rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-3">
+              <span class="font-semibold">Is dating already available?</span>
+              <span class="text-slate-400 group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+              Yes — the dating flow is complete. Events and event management features are the next rollout.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-3">
+              <span class="font-semibold">What’s coming with Events?</span>
+              <span class="text-slate-400 group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+              Event discovery, booking (solo / for 2 / group), event groups, entry validation (QR/code), and organizer tools.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-3">
+              <span class="font-semibold">Where do screenshots go?</span>
+              <span class="text-slate-400 group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+              Put them in <code class="text-slate-200">/static/assets/screens/</code> as <code class="text-slate-200">screen1.png</code> … <code class="text-slate-200">screen8.png</code>.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-3">
+              <span class="font-semibold">How can people get updates?</span>
+              <span class="text-slate-400 group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+              Join the waitlist below — you can wire the form to email, Sheets, or your backend later.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-fuchsia-500/15 via-indigo-500/15 to-cyan-400/15 ring-1 ring-white/10 p-6 sm:p-10">
+        <div class="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-fuchsia-500/20 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl"></div>
+
+        <div class="relative grid lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7">
+            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Be first when Events drop.</h2>
+            <p class="mt-3 text-slate-300 leading-relaxed">
+              Join the Funmate waitlist and get early access announcements, feature drops, and launch invites.
+            </p>
+
+            <div class="mt-5 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="rounded-full bg-white/5 ring-1 ring-white/10 px-3 py-1">No spam</span>
+              <span class="rounded-full bg-white/5 ring-1 ring-white/10 px-3 py-1">Unsubscribe anytime</span>
+              <span class="rounded-full bg-white/5 ring-1 ring-white/10 px-3 py-1">Early access perks</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <!-- Placeholder form (wire it later) -->
+            <form class="rounded-2xl bg-slate-950/40 ring-1 ring-white/10 p-5">
+              <label class="text-sm font-semibold" for="email">Email</label>
+              <input id="email" type="email" placeholder="you@example.com"
+                     class="mt-2 w-full rounded-xl bg-white/5 ring-1 ring-white/10 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/60" />
+              <button type="button"
+                      class="mt-3 w-full rounded-xl bg-gradient-to-r from-fuchsia-500 to-indigo-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-fuchsia-500/20 hover:opacity-95 transition">
+                Join waitlist
+              </button>
+              <p class="mt-3 text-xs text-slate-400">
+                This is a UI-only form for now. Connect to your backend when ready.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-10">
+      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="text-sm text-slate-400">
+          © <span id="year"></span> Funmate. All rights reserved.
+        </div>
+        <div class="flex items-center gap-4 text-sm">
+          <a href="#" class="text-slate-400 hover:text-slate-200 transition">Privacy</a>
+          <a href="#" class="text-slate-400 hover:text-slate-200 transition">Terms</a>
+          <a href="#" class="text-slate-400 hover:text-slate-200 transition">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Carousel logic (buttons + drag-to-scroll)
+    const carousel = document.getElementById("carousel");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function scrollByCard(direction = 1) {
+      const card = carousel.querySelector("div.snap-center");
+      const step = card ? (card.getBoundingClientRect().width + 16) : 320;
+      carousel.scrollBy({ left: direction * step, behavior: "smooth" });
+    }
+
+    prevBtn.addEventListener("click", () => scrollByCard(-1));
+    nextBtn.addEventListener("click", () => scrollByCard(1));
+
+    // Drag support
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    carousel.addEventListener("mousedown", (e) => {
+      isDown = true;
+      carousel.classList.add("cursor-grabbing");
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener("mouseleave", () => {
+      isDown = false;
+      carousel.classList.remove("cursor-grabbing");
+    });
+
+    carousel.addEventListener("mouseup", () => {
+      isDown = false;
+      carousel.classList.remove("cursor-grabbing");
+    });
+
+    carousel.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 1.2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch support (native scrolling works; this just makes it feel nicer)
+    carousel.style.cursor = "grab";
+  </script>
+</body>
 </html>
